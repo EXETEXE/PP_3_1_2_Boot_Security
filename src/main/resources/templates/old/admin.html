@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+
+<a href="/logout">
+    <input type="button" value="Logout" />
+</a>
+
+<h3>Add user</h3>
+<form method="post" th:action="@{/}" th:object="${user}">
+    <input id="name" placeholder="Enter First Name" required type="text" th:field="*{name}"/>
+    <input id="lastName" placeholder="Enter Last Name" required type="text" th:field="*{lastName}"/>
+    <input id="age" placeholder="Enter age" required type="text" th:field="*{age}"/>
+    <input id="email" placeholder="Enter email" required type="email" th:field="*{email}"/>
+    <input id="password" placeholder="Enter password" required type="password" th:field="*{password}"/>
+
+    <input type="checkbox"  name="roleId" value="1"
+           checked>
+    <label >USER</label>
+
+    <input type="checkbox" name="roleId" value="2">
+    <label >ADMIN</label>
+
+
+
+    <input type="submit" value="Add user">
+</form>
+
+<h3>All users:</h3>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Email</th>
+        <th scope="col">Password</th>
+        <th scope="col">Roles</th>
+        <th scope="col">Delete user</th>
+        <th scope="col">Update user</th>
+
+    </tr>
+    </thead>
+
+    <tr th:each="user : ${users}"
+        th:style="'font-weight: bold;'">
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getName()}"></td>
+        <td th:text="${user.getLastName()}"></td>
+        <td th:text="${user.getAge()}"></td>
+        <td th:text="${user.getEmail()}"></td>
+        <td th:text="${user.getPassword()}"></td>
+        <td th:text="${user.getRoles()}"></td>
+        <td>
+            <form th:method="DELETE" th:action="@{/delete/{id}(id=${user.id})}">
+                <input type="submit" value="Delete">
+            </form>
+        </td>
+
+        <td>
+            <form th:method="PATCH" th:action="@{/update/{id}(id=${user.id})}" th:object="${user}">
+                <input id="nameToUpdate" placeholder="Enter First Name" required type="text" th:field="*{name}"/>
+                <input id="lastNameToUpdate" placeholder="Enter Last Name" required type="text" th:field="*{lastName}"/>
+                <input id="ageToUpdate" placeholder="Enter age" required type="text" th:field="*{age}"/>
+                </div>
+                <br>
+
+                <input id="EmailToUpdate" placeholder="Enter Email" required type="email" th:field="*{email}"/>
+                <input id="PasswordToUpdate" placeholder="Enter Password" required type="password" th:field="*{password}"/>
+
+                <input type="checkbox"  name="roleIdToUpdate" value="1"
+                       checked>
+                <label >USER</label>
+
+                <input type="checkbox" name="roleIdToUpdate" value="2">
+                <label >ADMIN</label>
+
+                <input type="submit" value="Update user">
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -34,11 +34,13 @@ public class UsersController {
     @GetMapping("/admin")
     public String users(@ModelAttribute("user") User user, Model model) {
 
+
+
+        model.addAttribute("currentUser", new User("dgdgdgd", "fdfd", 45));
+
         model.addAttribute("users", usersService.findAll());
 
         model.addAttribute("user", new User());
-
-        System.out.println(usersService.findByEmail("admin@mail.ru"));
 
         return "admin";
     }
@@ -52,7 +54,6 @@ public class UsersController {
         user.setRoles(rolesService.findMultipleById(roleId));
 
         usersService.save(user);
-
 
 
         return "redirect:/admin";

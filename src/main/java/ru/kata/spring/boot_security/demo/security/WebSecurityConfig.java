@@ -1,7 +1,6 @@
 package ru.kata.spring.boot_security.demo.security;
 
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -28,26 +27,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/user/**").hasRole("USER")
-                .antMatchers(("/admin/**")).hasRole("ADMIN")
-                .and()
-                .formLogin().successHandler(successUserHandler)
-                .permitAll()
-                .and()
-                .logout().logoutUrl("/logout")
-                .logoutSuccessUrl("/login")
-                .permitAll();
-
 //        http
 //                .csrf().disable()
 //                .authorizeRequests()
-//                .antMatchers("/", "/index").permitAll()
-//                .antMatchers("/user").hasRole("USER")
-//                .antMatchers(("/admin")).hasRole("ADMIN")
-//                .anyRequest().authenticated()
+//                .antMatchers("/user/**").hasRole("USER")
+//                .antMatchers(("/admin/**")).hasRole("ADMIN")
 //                .and()
 //                .formLogin().successHandler(successUserHandler)
 //                .permitAll()
@@ -55,10 +39,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .logout().logoutUrl("/logout")
 //                .logoutSuccessUrl("/login")
 //                .permitAll();
+
+        http.authorizeRequests().antMatchers("/").permitAll();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
 //        return new BCryptPasswordEncoder();
         return NoOpPasswordEncoder.getInstance();
     }
