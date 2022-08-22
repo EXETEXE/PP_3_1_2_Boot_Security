@@ -111,11 +111,11 @@
                             <!--                            Button trigger modal-->
                             <button
                                     type="button"
-                                    class="btn btn-info" data-toggle="modal" data-target="#userUpdateModal">
+                                    class="btn btn-info" data-toggle="modal" th:data-target="${'#userUpdateModal' + user.getId()}">
                                 Edit
 
                             </button>
-                            <input th:placeholder="${user.getId()}"></input>
+
 
 
 
@@ -124,11 +124,11 @@
 
 
 
-                            <form th:method="PATCH" th:action="@{/update/{id}(id=${user.id})}"
-                                  th:object="${user}" >
+<!--                            <form th:method="PATCH" th:action="@{/update/{id}(id=${user.id})}"-->
+<!--                                  th:object="${user}">-->
 
                                 <div
-                                        class="modal fade" id="userUpdateModal" tabindex="-1" role="dialog"
+                                        class="modal fade" th:id="${'userUpdateModal' + user.getId()}" tabindex="-1" role="dialog"
                                         aria-labelledby="userUpdateModal" aria-hidden="true">
 
                                     <div class="modal-dialog" role="document">
@@ -141,6 +141,8 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
+
+                                            <form th:method="PATCH" th:action="@{/update/{id}(id=${user.id})}">
                                             <div class="modal-body">
                                                 <!--                    Add user form with rows start-->
                                                 <div class="row">
@@ -155,11 +157,9 @@
                                                             <b>
                                                                 ID
                                                             </b>
-                                                            <input th:placeholder="${user.getId()}" class="form-control"
-                                                                   id="idToUpdate"
+                                                            <input th:placeholder="${user.id}" class="form-control" id="idToUpdate"
 
-
-                                                                   th:field="*{id}"/>
+                                                                   th:value="${user.id}"/>
                                                         </div>
 
                                                         <div class="text-center">
@@ -167,11 +167,11 @@
                                                             <b>
                                                                 First name
                                                             </b>
-                                                            <input  class="form-control" id="nameToUpdate"
+                                                            <input  class="form-control" id="nameToUpdate" name="name"
 
                                                                    required
                                                                    type="text"
-                                                                   th:field="*{name}"/>
+                                                                   th:value="${user.name}"/>
                                                         </div>
 
                                                         <div class="form-group text-center">
@@ -181,7 +181,8 @@
                                                             </b>
                                                             <input class="form-control" id="lastNameToUpdate" required
                                                                    type="text"
-                                                                   th:field="*{lastName}"/>
+                                                                   name="lastName"
+                                                                   th:value="${user.lastName}"/>
                                                         </div>
 
                                                         <div class="form-group text-center">
@@ -190,7 +191,8 @@
                                                                 Age
                                                             </b>
                                                             <input type="number" class="form-control" id="ageToUpdate"
-                                                                   th:field="*{age}"/>
+                                                                   name="age"
+                                                                   th:value="${user.age}"/>
 
                                                         </div>
 
@@ -201,7 +203,8 @@
                                                             </b>
                                                             <input class="form-control" id="emailToUpdate" required
                                                                    type="email"
-                                                                   th:field="*{email}"/>
+                                                                   name="email"
+                                                                   th:value="${user.email}"/>
                                                         </div>
 
                                                         <div class="form-group text-center">
@@ -211,7 +214,8 @@
                                                             </b>
                                                             <input class="form-control" id="passwordToUpdate" required
                                                                    type="password"
-                                                                   th:field="*{password}"/>
+                                                                   name="password"
+                                                                   th:field="${user.password}"/>
                                                         </div>
 
                                                         <div class="form-group text-center">
@@ -243,13 +247,14 @@
                                                 <button type="submit" class="btn btn-primary">Edit</button>
 
                                             </div>
+                                            </form>
                                         </div>
                                     </div>
 
 
                                 </div>
 
-                            </form>
+<!--                            </form>-->
                             <!-- Update Modal end-->
 
 
