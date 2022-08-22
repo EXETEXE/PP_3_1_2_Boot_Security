@@ -30,7 +30,7 @@
 
 <!--TOP NAVBAR-->
 <nav class="navbar navbar-dark bg-dark col-12" th:object="${currentUser}">
-    <h2 class="navbar-brand" th:text="*{name}"></h2>
+    <h2 class="navbar-brand" th:text="*{email + ' with roles: ' + roles}"></h2>
 
     <a href="/logout">
         <input type="button" class="btn btn-md active disabled btn-secondary" value="Logout"/>
@@ -87,7 +87,7 @@
                         <th scope="col">Last name</th>
                         <th scope="col">Age</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Roles</th>
+                        <th scope="col">Role</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
 
@@ -116,16 +116,10 @@
 
                             </button>
 
-
-
-
                             <!--                            Button trigger modal end-->
+
+
                             <!-- Update Modal start-->
-
-
-
-<!--                            <form th:method="PATCH" th:action="@{/update/{id}(id=${user.id})}"-->
-<!--                                  th:object="${user}">-->
 
                                 <div
                                         class="modal fade" th:id="${'userUpdateModal' + user.getId()}" tabindex="-1" role="dialog"
@@ -157,7 +151,7 @@
                                                             <b>
                                                                 ID
                                                             </b>
-                                                            <input th:placeholder="${user.id}" class="form-control" id="idToUpdate"
+                                                            <input disabled th:placeholder="${user.id}" class="form-control" id="idToUpdate"
 
                                                                    th:value="${user.id}"/>
                                                         </div>
@@ -261,12 +255,129 @@
                         </td>
                         <td>
 
-                            <form th:method="DELETE" th:action="@{/delete/{id}(id=${user.id})}">
+
                                 <button type="submit"
-                                        class="btn btn-danger">
+                                        class="btn btn-danger" data-toggle="modal" th:data-target="${'#userDeleteModal' + user.getId()}">
                                     Delete
                                 </button>
-                            </form>
+
+
+                            <div
+                                    class="modal fade" th:id="${'userDeleteModal' + user.getId()}" tabindex="-1" role="dialog"
+                                    aria-labelledby="userDeleteModal" aria-hidden="true">
+
+                                <div class="modal-dialog" role="document">
+                                    <div
+                                            class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="userDeleteModalLabel">Edit user</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
+                                        <form th:method="DELETE" th:action="@{/delete/{id}(id=${user.id})}">
+                                            <div class="modal-body">
+
+                                                <div class="row">
+                                                    <div class="col-md-3"></div>
+                                                    <div class="col-md-6">
+
+
+
+                                                        <div class="text-center">
+
+                                                            <b>
+                                                                ID
+                                                            </b>
+                                                            <input disabled th:placeholder="${user.id}" class="form-control" id="idToDelete"
+
+                                                                   th:value="${user.id}"/>
+                                                        </div>
+
+                                                        <div class="text-center">
+
+                                                            <b>
+                                                                First name
+                                                            </b>
+                                                            <input disabled class="form-control" id="nameToDelete" name="name"
+
+                                                                    required
+                                                                    type="text"
+                                                                    th:value="${user.name}"/>
+                                                        </div>
+
+                                                        <div class="form-group text-center">
+
+                                                            <b>
+                                                                Last name
+                                                            </b>
+                                                            <input disabled class="form-control" id="lastNameToDelete" required
+                                                                   type="text"
+                                                                   name="lastName"
+                                                                   th:value="${user.lastName}"/>
+                                                        </div>
+
+                                                        <div class="form-group text-center">
+
+                                                            <b>
+                                                                Age
+                                                            </b>
+                                                            <input disabled type="number" class="form-control" id="ageToDelete"
+                                                                   name="age"
+                                                                   th:value="${user.age}"/>
+
+                                                        </div>
+
+                                                        <div class="form-group text-center">
+
+                                                            <b for="emailToUpdate">
+                                                                Email
+                                                            </b>
+                                                            <input disabled class="form-control" id="emailToDelete" required
+                                                                   type="email"
+                                                                   name="email"
+                                                                   th:value="${user.email}"/>
+                                                        </div>
+
+
+
+                                                        <div class="form-group text-center">
+                                                            <b>
+                                                                Roles
+                                                            </b>
+
+                                                            <select disabled name="roleIdToDelete" multiple
+                                                                    class="form-control"
+                                                                    style="height: 60px">
+                                                                <option class="active" value="1">USER</option>
+                                                                <option value="2">ADMIN</option>
+                                                            </select>
+
+                                                        </div>
+
+
+                                                        <!--                            DELETE USER FORM END-->
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                    </div>
+                                                </div>
+                                                <!--                    Add user form with rows end-->
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+
+                            </div>
 
 
                         </td>

@@ -32,11 +32,11 @@ public class UsersController {
     }
 
     @GetMapping("/admin")
-    public String users(@ModelAttribute("user") User user, Model model) {
+    public String users(@ModelAttribute("user") User user, Model model, Principal principal) {
 
 
 
-        model.addAttribute("currentUser", new User("dgdgdgd", "fdfd", 45));
+        model.addAttribute("currentUser", usersService.findByEmail(principal.getName()));
 
         model.addAttribute("users", usersService.findAll());
 
