@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Spring Security Example</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+<h1>Welcome to Index PAGE!</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+
+        <div class="col-md-10">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Last name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Roles</th>
+                    <th scope="col">Delete user</th>
+                    <th scope="col">Update user</th>
+
+                </tr>
+                </thead>
+
+                <tr th:each="user : ${users}"
+                    th:style="'font-weight: bold;'">
+                    <td th:text="${user.getId()}"></td>
+                    <td th:text="${user.getName()}"></td>
+                    <td th:text="${user.getLastName()}"></td>
+                    <td th:text="${user.getAge()}"></td>
+                    <td th:text="${user.getEmail()}"></td>
+                    <td th:text="${user.getPassword()}"></td>
+                    <td th:text="${user.getRoles()}"></td>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
