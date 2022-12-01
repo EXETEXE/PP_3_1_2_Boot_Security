@@ -21,8 +21,8 @@
 <body>
 
 <!--TOP NAVBAR-->
-<nav class="navbar navbar-dark bg-dark col-12" th:object="${currentUser}">
-    <h2 class="navbar-brand" th:text="*{email + ' with roles: ' + roles}"></h2>
+<nav class="navbar navbar-dark bg-dark col-12">
+    <h2 class="navbar-brand" id="header"></h2>
 
     <a href="/logout">
         <input type="button" class="btn btn-md active disabled btn-secondary" value="Logout"/>
@@ -76,14 +76,14 @@
 
                     <tbody>
 
-                    <tr
-                        th:style="'font-weight: bold;'">
-                        <td th:text="${currentUser.getId()}"></td>
-                        <td th:text="${currentUser.getName()}"></td>
-                        <td th:text="${currentUser.getLastName()}"></td>
-                        <td th:text="${currentUser.getAge()}"></td>
-                        <td th:text="${currentUser.getEmail()}"></td>
-                        <td th:text="${currentUser.getRoles()}"></td>
+                    <tr>
+                        <td id="userId"></td>
+                        <td id="userName"></td>
+                        <td id="userLastName"></td>
+                        <td id="userAge"></td>
+                        <td id="userEmail"></td>
+                        <td id="userRoles"></td>
+                    </tr>
 
 
                     </tbody>
@@ -102,6 +102,9 @@
 <!--</div>-->
 <!--GENERAL GRID END-->
 
+<!--SCRIPTS-->
+<script type="text/javascript" src="/js/populateHeader.js"></script>
+<script type="text/javascript" src="/js/userPage.js"></script>
 
 </body>
 </html>

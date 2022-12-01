@@ -13,16 +13,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
-
 
     <meta charset="UTF-8">
     <title></title>
@@ -32,10 +22,9 @@
 <!--GENERAL GRID START-->
 <!--<div class="container-fluid" style="padding-left: 0px; padding-right: 0px">-->
 
-<h1 class='ggg'>FFFFFFF</h1>
 <!--TOP NAVBAR-->
 <nav class="navbar navbar-dark bg-dark col-12">
-    <h2 class="navbar-brand"></h2>
+    <h2 class="navbar-brand" id="header"></h2>
 
     <a href="/logout">
         <input type="button" class="btn btn-md active disabled btn-secondary" value="Logout"/>
@@ -62,6 +51,7 @@
     <div class="col-10 bg-light text-dark " style="padding-left: 50px; padding-right: 50px">
 
         <div><h1>Admin information page</h1></div>
+
 
         <ul class="nav nav-tabs">
 
@@ -100,7 +90,7 @@
                     </thead>
                     <!--            UT HEADERS END-->
 
-                    <tbody class="test1">
+                    <tbody class="userList">
                     <!--ТУТ бУДЕТ ДЖАВАСКРИПТ!!!1-->
                     </tbody>
                 </table>
@@ -118,7 +108,7 @@
                         </div>
                         <div class="col-md-2">
                             <!--                            ADD USER FORM START-->
-                            <form role="form" >
+                            <form role="form">
                                 <!--                                NAME INPUT-->
                                 <div class="form-group text-center">
 
@@ -171,7 +161,8 @@
                                         Roles
                                     </b>
 
-                                    <select name="roleId" multiple class="form-control"  id="rolesSelectorInput" style="height: 60px">
+                                    <select name="roleId" multiple class="form-control" id="rolesSelectorInput"
+                                            style="height: 60px">
                                         <option class="active" value="1">USER</option>
                                         <option value="2">ADMIN</option>
                                     </select>
@@ -179,7 +170,8 @@
                                 </div>
 
                                 <div class="form-group text-center">
-                                    <input type="submit" id="addUserSubmitButton" class="btn btn-success" value="Add user">
+                                    <input type="submit" id="addUserSubmitButton" class="btn btn-success"
+                                           value="Add user">
 
                                 </div>
                             </form>
@@ -193,27 +185,23 @@
             </div>
             <!--             ADD NEW USER  TABLE END-->
 
-<!--            EDIT MODAL START-->
+            <!--            EDIT MODAL START-->
 
-
-
-            <!--            EDIT MODAL END-->
-            <div
-                    class="modal fade" id="userUpdateModal" tabindex="-1" role="dialog"
-                    aria-labelledby="userUpdateModal" aria-hidden="true">
+            <div class="modal fade" id="userUpdateModal" tabindex="-1" role="dialog" aria-labelledby="userUpdateModal"
+                 aria-hidden="true">
 
                 <div class="modal-dialog" role="document">
                     <div
                             class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="userUpdateModalLabel">Edit user</h5>
-                            <button type="button" class="close" data-dismiss="modal"
+                            <button type="button" class="close" id="closeEditModal1" data-dismiss="modal"
                                     aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
 
-                        <form >
+                        <form>
                             <div class="modal-body">
                                 <!--                    Add user form with rows start-->
                                 <div class="row">
@@ -223,85 +211,76 @@
 
                                         <!--                                NAME INPUT-->
 
-<!--                                        <div class="text-center">-->
+                                        <div class="text-center">
 
-<!--                                            <b>-->
-<!--                                                ID-->
-<!--                                            </b>-->
-<!--                                            <input disabled th:placeholder="${user.id}" class="form-control" id="idToUpdate"-->
+                                            <b>
+                                                ID
+                                            </b>
+                                            <input disabled placeholder="" class="form-control"
+                                                   id="idToUpdate"/>
+                                        </div>
 
-<!--                                                   th:value="${user.id}"/>-->
-<!--                                        </div>-->
+                                        <div class="text-center">
 
-<!--                                        <div class="text-center">-->
+                                            <b>
+                                                First name
+                                            </b>
+                                            <input class="form-control" id="nameToUpdate" name="name" required
+                                                   type="text"/>
+                                        </div>
 
-<!--                                            <b>-->
-<!--                                                First name-->
-<!--                                            </b>-->
-<!--                                            <input  class="form-control" id="nameToUpdate" name="name"-->
+                                        <div class="form-group text-center">
 
-<!--                                                    required-->
-<!--                                                    type="text"-->
-<!--                                                    th:value="${user.name}"/>-->
-<!--                                        </div>-->
+                                            <b>
+                                                Last name
+                                            </b>
+                                            <input class="form-control" id="lastNameToUpdate" required
+                                                   type="text"
+                                                   name="lastName"/>
+                                        </div>
 
-<!--                                        <div class="form-group text-center">-->
+                                        <div class="form-group text-center">
 
-<!--                                            <b>-->
-<!--                                                Last name-->
-<!--                                            </b>-->
-<!--                                            <input class="form-control" id="lastNameToUpdate" required-->
-<!--                                                   type="text"-->
-<!--                                                   name="lastName"-->
-<!--                                                   th:value="${user.lastName}"/>-->
-<!--                                        </div>-->
+                                            <b>
+                                                Age
+                                            </b>
+                                            <input type="number" class="form-control" id="ageToUpdate"
+                                                   name="age"/>
 
-<!--                                        <div class="form-group text-center">-->
+                                        </div>
 
-<!--                                            <b>-->
-<!--                                                Age-->
-<!--                                            </b>-->
-<!--                                            <input type="number" class="form-control" id="ageToUpdate"-->
-<!--                                                   name="age"-->
-<!--                                                   th:value="${user.age}"/>-->
+                                        <div class="form-group text-center">
 
-<!--                                        </div>-->
+                                            <b for="emailToUpdate">
+                                                Email
+                                            </b>
+                                            <input class="form-control" id="emailToUpdate" required
+                                                   type="email"
+                                                   name="email"/>
+                                        </div>
 
-<!--                                        <div class="form-group text-center">-->
+                                        <div class="form-group text-center">
 
-<!--                                            <b for="emailToUpdate">-->
-<!--                                                Email-->
-<!--                                            </b>-->
-<!--                                            <input class="form-control" id="emailToUpdate" required-->
-<!--                                                   type="email"-->
-<!--                                                   name="email"-->
-<!--                                                   th:value="${user.email}"/>-->
-<!--                                        </div>-->
+                                            <b for="passwordToUpdate">
+                                                Password
+                                            </b>
+                                            <input class="form-control" id="passwordToUpdate" required
+                                                   type="password"
+                                                   name="password"/>
+                                        </div>
 
-<!--                                        <div class="form-group text-center">-->
+                                        <div class="form-group text-center">
+                                            <b for="rolesUpdateSelectorInput">
+                                                Roles
+                                            </b>
 
-<!--                                            <b for="passwordToUpdate">-->
-<!--                                                Password-->
-<!--                                            </b>-->
-<!--                                            <input class="form-control" id="passwordToUpdate" required-->
-<!--                                                   type="password"-->
-<!--                                                   name="password"-->
-<!--                                                   th:field="${user.password}"/>-->
-<!--                                        </div>-->
+                                            <select name="roleId" multiple class="form-control" id="rolesUpdateSelectorInput"
+                                                    style="height: 60px">
+                                                <option class="active" value="1">USER</option>
+                                                <option value="2">ADMIN</option>
+                                            </select>
 
-<!--                                        <div class="form-group text-center">-->
-<!--                                            <b>-->
-<!--                                                Roles-->
-<!--                                            </b>-->
-
-<!--                                            <select name="roleIdToUpdate" multiple-->
-<!--                                                    class="form-control"-->
-<!--                                                    style="height: 60px">-->
-<!--                                                <option class="active" value="1">USER</option>-->
-<!--                                                <option value="2">ADMIN</option>-->
-<!--                                            </select>-->
-
-<!--                                        </div>-->
+                                        </div>
 
 
                                         <!--                            Update USER FORM END-->
@@ -312,10 +291,10 @@
                                 <!--                    Add user form with rows end-->
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                <button type="button" class="btn btn-secondary" id="closeEditModal2" data-dismiss="modal">
                                     Close
                                 </button>
-                                <button type="submit" class="btn btn-primary">Edit</button>
+                                <button type="submit" class="btn btn-primary" id="submitUserEditData">Edit</button>
 
                             </div>
                         </form>
@@ -324,16 +303,141 @@
 
 
             </div>
-    <!--    MAIN BAR END-->
+
+            <!--            EDIT MODAL END-->
 
 
+            <!--            DELETE MODAL START-->
+
+            <div class="modal fade" id="userDeleteModal" tabindex="-1" role="dialog" aria-labelledby="userDeleteModal"
+                 aria-hidden="true">
+
+                <div class="modal-dialog" role="document">
+                    <div
+                            class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="userDeleteModalLabel">Edit user</h5>
+                            <button type="button" class="close" id="closeDeleteModal1" data-dismiss="modal"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <form>
+                            <div class="modal-body">
+                                <!--                    DELETE user form with rows start-->
+                                <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-6">
+                                        <!--                            DELETE USER FORM START-->
+
+
+                                        <div class="text-center">
+
+                                            <b>
+                                                ID
+                                            </b>
+                                            <input disabled placeholder="" class="form-control"
+                                                   id="idToDelete"/>
+                                        </div>
+
+                                        <div class="text-center">
+
+                                            <b>
+                                                First name
+                                            </b>
+                                            <input disabled class="form-control" id="nameToDelete" name="name" required
+                                                   type="text"/>
+                                        </div>
+
+                                        <div class="form-group text-center">
+
+                                            <b>
+                                                Last name
+                                            </b>
+                                            <input disabled class="form-control" id="lastNameToDelete" required
+                                                   type="text"
+                                                   name="lastName"/>
+                                        </div>
+
+                                        <div class="form-group text-center">
+
+                                            <b>
+                                                Age
+                                            </b>
+                                            <input disabled type="number" class="form-control" id="ageToDelete"
+                                                   name="age"/>
+
+                                        </div>
+
+                                        <div class="form-group text-center">
+
+                                            <b for="emailToDelete">
+                                                Email
+                                            </b>
+                                            <input disabled class="form-control" id="emailToDelete" required
+                                                   type="email"
+                                                   name="email"/>
+                                        </div>
+
+                                        <div class="form-group text-center">
+                                            <b for="rolesDeleteSelectorInput">
+                                                Roles
+                                            </b>
+
+                                            <select disabled name="roleId" multiple class="form-control" id="rolesDeleteSelectorInput"
+                                                    style="height: 60px">
+                                                <option class="active" value="1">USER</option>
+                                                <option value="2">ADMIN</option>
+                                            </select>
+
+                                        </div>
+
+                                        <!--                            Delete USER FORM END-->
+                                    </div>
+                                    <div class="col-md-3">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" id="closeDeleteModal2" data-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="submit" id="submitUserDeleteData" class="btn btn-danger">Delete</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!--            DELETE MODAL END-->
+
+            <!--    MAIN BAR END-->
+
+
+        </div>
+    </div>
 </div>
 <!--MAIN GRID END-->
-<!--</div>-->
+
 <!--GENERAL GRID END-->
 
-<script type="text/javascript" src="/js/adminPage.js" ></script>
 
+<!--SCRIPTS-->
+<script type="text/javascript" src="/js/populateHeader.js"></script>
+<script type="text/javascript" src="/js/adminPage.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>
